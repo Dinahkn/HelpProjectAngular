@@ -56,7 +56,7 @@ export class DialogNeedCarpoolComponent implements OnInit {
     });
     if(this.editData){
       let LatLngDeparture=(this.editData.DepartureLatitude).toString()+","+(this.editData.DepartureLongitude).toString();
-      $.get("https://maps.googleapis.com/maps/api/geocode/json?latlng="+LatLngDeparture+"&key=AIzaSyBIlDxFBMUUYcqcR928vAFH35DDQaTgvRg",
+      $.get("https://maps.googleapis.com/maps/api/geocode/json?latlng="+LatLngDeparture+"&key="+MYAPIKEY,
         async(data)=>{
           let res=data.results[0].formatted_address;
           var partsAdressDeparture=res.split(',')
@@ -64,7 +64,7 @@ export class DialogNeedCarpoolComponent implements OnInit {
           $('#adressDeparture').val(theAdressDeparture)
       })
       let LatLngArrival=(this.editData.ArrivalLatitude).toString()+","+(this.editData.ArrivalLongitude).toString();
-      $.get("https://maps.googleapis.com/maps/api/geocode/json?latlng="+LatLngArrival+"&key=AIzaSyBIlDxFBMUUYcqcR928vAFH35DDQaTgvRg",
+      $.get("https://maps.googleapis.com/maps/api/geocode/json?latlng="+LatLngArrival+"&key="+MYAPIKEY,
         async(data)=>{
           let res=data.results[0].formatted_address;
           let partsAdressArrival=res.split(',')
@@ -91,9 +91,9 @@ export class DialogNeedCarpoolComponent implements OnInit {
     let date=new Date(this.needCarpoolForm.get("dateCarpool")?.value).toString();
     let hour=this.needCarpoolForm.get("hourDepartureCarpool")?.value;
     let dateHour=new Date(date.replace("00:00:00",hour));
-    $.get("https://maps.googleapis.com/maps/api/geocode/json?address="+adressDToChange+","+cityDName+",+IL&key=AIzaSyBIlDxFBMUUYcqcR928vAFH35DDQaTgvRg",
+    $.get("https://maps.googleapis.com/maps/api/geocode/json?address="+adressDToChange+","+cityDName+",+IL&key="+MYAPIKEY,
     async (data1)=>{
-      $.get("https://maps.googleapis.com/maps/api/geocode/json?address="+adressAToChange+","+cityAName+",+IL&key=AIzaSyBIlDxFBMUUYcqcR928vAFH35DDQaTgvRg",
+      $.get("https://maps.googleapis.com/maps/api/geocode/json?address="+adressAToChange+","+cityAName+",+IL&key="+MYAPIKEY,
       async (data2)=>{
         let updateCarpool:NeedCarpool={
           IDUser:this.editData.IDUser,
