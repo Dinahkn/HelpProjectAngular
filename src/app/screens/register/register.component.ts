@@ -81,7 +81,7 @@ export class RegisterComponent implements OnInit {
     adressToChange=adressToChange.replace(" ","+");
     let cityName=JSON.parse(JSON.stringify(await this._cityService.getCity(this.registerForm.get("city")?.value))).CityName
     try{
-      $.get("https://maps.googleapis.com/maps/api/geocode/json?address="+adressToChange+","+cityName+",+IL&key=AIzaSyBIlDxFBMUUYcqcR928vAFH35DDQaTgvRg",
+      $.get("https://maps.googleapis.com/maps/api/geocode/json?address="+adressToChange+","+cityName+",+IL&key="+MYAPIKEY,
       async (data)=>{
         console.log(data)
         let userM:User={
