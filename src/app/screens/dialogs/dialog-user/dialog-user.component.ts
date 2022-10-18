@@ -78,7 +78,7 @@ export class DialogUserComponent implements OnInit {
 
     if(this.editData){
       let LatLng=(this.editData.Latitude).toString()+","+(this.editData.Longitude).toString();
-      $.get("https://maps.googleapis.com/maps/api/geocode/json?latlng="+LatLng+"&key=AIzaSyBIlDxFBMUUYcqcR928vAFH35DDQaTgvRg",
+      $.get("https://maps.googleapis.com/maps/api/geocode/json?latlng="+LatLng+"&key="+MYAPIKEY,
         async(data)=>{
           let res=data.results[0].formatted_address;
           let partsAdress=res.split(',')
@@ -103,7 +103,7 @@ export class DialogUserComponent implements OnInit {
         adressToChange=adressToChange.replace(" ","+");
         let cityName=JSON.parse(JSON.stringify(this._cityService.getCity(this.userForm.get("IDCity")?.value))).CityName;
         try{
-          $.get("https://maps.googleapis.com/maps/api/geocode/json?address="+adressToChange+","+cityName+",+IL&key=AIzaSyBIlDxFBMUUYcqcR928vAFH35DDQaTgvRg",
+          $.get("https://maps.googleapis.com/maps/api/geocode/json?address="+adressToChange+","+cityName+",+IL&key="+MYAPIKEY,
           async (data)=>{
             let AdminAdd:User={
             FullName:this.userForm.get("FullName")?.value,
@@ -145,7 +145,7 @@ export class DialogUserComponent implements OnInit {
     adressToChange=adressToChange.replace(" ","+");
     let cityName=JSON.parse(JSON.stringify(await this._cityService.getCity(this.userForm.get("IDCity")?.value))).CityName;
     try{
-      $.get("https://maps.googleapis.com/maps/api/geocode/json?address="+adressToChange+","+cityName+",+IL&key=AIzaSyBIlDxFBMUUYcqcR928vAFH35DDQaTgvRg",
+      $.get("https://maps.googleapis.com/maps/api/geocode/json?address="+adressToChange+","+cityName+",+IL&key="+MYAPIKEY,
       async (data)=>{
         let updateUser:User={
           IDUser:this.editData.IDUser,
